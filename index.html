@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+    <meta charset=utf-8>
+    <meta http-equiv=X-UA-Compatible content='IE=edge;chrome=1'>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <title>Covid Test &middot; Idunnova</title>
+    <meta name=msapplication-TileColor content="#2b5797">
+    <meta name=theme-color content="#007bff">
+    <link rel=stylesheet href="https://rawgit.com/mblode/marx/master/css/marx.min.css">
+</head>
+
+<body>
+    <main>
+        <center class=hero>
+            <h1>IDUNNOVA SARS-CoV-2 Antigen Instant Quandary Test</h1>
+            <hr>
+            <h3 id=tagline></h3>
+            <p>The Idunnova SARS-CoV-2 Antigen Instant Quandary Test is a COVID-19 screening test which provides users
+                with an instant result. It is free to use.<br><small>Not valid for patients under 16 years old.</small>
+            </p>
+            <div> <a href="#" id=test><button id=testbtn>Take Test</button></a></div>
+            <br>
+            <div id=loading>
+                <img src="91.gif">
+            </div>
+            <br>
+            <div id=positive>
+                <h3>Your result is: POSITIVE</h3>
+            </div>
+            <div id=negative>
+                <h3>Your result is: NEGATIVE</h3>
+            </div>
+            <br>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Test ID</th>
+                        <th>Time</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody id=table>
+                </tbody>
+            </table>
+        </center>
+        <div id=inform>
+            <h3>Interpreting Your Result</h3>
+
+            <p>
+                The Idunnova SARS-CoV-2 Antigen Instant Quandary Test uses a virtual coin-toss to give you a positive or
+                negative COVID-19 test result.
+            </p>
+            <p>
+
+                You may think that this makes the test useless, and even unsafe if anyone was to take it seriously. And
+                so do we.
+            </p>
+            <p>
+
+                But the Idunnova tests probably miss fewer COVID-19 cases than the Innova SARS-CoV-2 Antigen Rapid
+                Qualitative
+                Tests – which are the lateral flow tests promoted by the UK government. </p>
+            <p>
+
+                According to an article in the BMJ, while being used to screen students at Birmingham University, the
+                Innova test only picked up an estimated 3.2% of positive COVID-19 cases, meaning that an estimated 60 of
+                the 7189 students were incorrectly given a negative COVID-19 result.
+            </p>
+            <p>
+
+                Of course the Idunnova test’s practical use is limited by its very high false positive result. However
+                the BMJ reported that the false positive rate of the Innova test could be as high as 58% - not great
+                either.
+            </p>
+            <p>
+                Innova Medical Group told the BMJ in statement “This low level of efficacy is not achievable in any
+                manner where the test is used properly and sample collection is taken correctly. When used properly the
+                Innova test is a highly effective tool in detecting infectious people and allowing for proper response
+                to assist in the reducing of the spread of the SARS-CoV-2 virus.”
+            </p>
+            <p>
+
+                Still in a quandary? Click here to read more: <a href="https://www.bmj.com/content/371/bmj.m4941"
+                    target="_blank">https://www.bmj.com/content/371/bmj.m4941</a> </p>
+        </div>
+        <footer>
+            <p>&copy; 2021 &middot; <a href="#">IDUNNOVA</a></p>
+        </footer>
+    </main>
+</body>
+<script>
+    var initial_test_id = Math.floor(3000000 + (Math.random() * 60000000));
+    document.getElementById("positive").style.display = "none";
+    document.getElementById("negative").style.display = "none";
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("inform").style.display = "none";
+
+
+    document.getElementById("test").onclick = function () {
+        document.getElementById("loading").style.display = "block";
+        document.getElementById("positive").style.display = "none";
+        document.getElementById("negative").style.display = "none";
+        document.getElementById("testbtn").innerText = "Analysing Sample...";
+        document.getElementById("testbtn").disabled = true;
+        setTimeout(() => {
+            document.getElementById("inform").style.display = "block";
+            document.getElementById("loading").style.display = "none";
+            document.getElementById("testbtn").innerText = "Retake Test";
+            document.getElementById("testbtn").disabled = false;
+            // time
+            var datenow = new Date();
+            var timestring = datenow.toLocaleTimeString();
+            // result
+            var result = Math.random() < 0.5 ? 'POSITIVE' : 'NEGATIVE';
+            document.getElementById(result == "POSITIVE" ? "positive" : "negative").style.display = "block";
+            // add row
+            var table = document.getElementById("table");
+            var row = table.insertRow(0);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            cell1.innerHTML = initial_test_id++;
+            cell2.innerHTML = timestring;
+            cell3.innerHTML = result;
+        }, 5000);
+    };
+</script>
+
+</html>
