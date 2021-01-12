@@ -86,7 +86,7 @@
                     target="_blank">https://www.bmj.com/content/371/bmj.m4941</a> </p>
         </div>
         <footer>
-            <p>&copy; 2021 &middot; <a href="#">IDUNNOVA</a></p>
+            <p>&copy; 2021 &middot; <a href="mailto:idunnova@outlook.com">IDUNNOVA</a></p>
         </footer>
     </main>
 </body>
@@ -104,6 +104,15 @@
         document.getElementById("negative").style.display = "none";
         document.getElementById("testbtn").innerText = "Analysing Sample...";
         document.getElementById("testbtn").disabled = true;
+        
+        setTimeout(() => {
+            document.getElementById("testbtn").innerText = "Detecting Traces...";
+        }, 2000);
+
+        setTimeout(() => {
+            document.getElementById("testbtn").innerText = "Preparing Report...";
+        }, 4000);
+
         setTimeout(() => {
             document.getElementById("inform").style.display = "block";
             document.getElementById("loading").style.display = "none";
